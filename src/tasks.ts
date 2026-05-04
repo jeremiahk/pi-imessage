@@ -315,10 +315,11 @@ function withRetry(task: StartTask, options: { delays: number[]; retryable: (mes
 	};
 }
 
-/** Send the message to the agent and dispatch a reply for each agent turn. */
+/** Send the message to the agent and dispatch only the final assistant reply to the user. Tool start/end messages are filtered out. */
 export function createCallAgentTask(agent: AgentManager): StartTask {
 	const task: StartTask = async (_chat, incoming, outgoing, emit) => {
 		await agent.processMessage(incoming, async (agentReply) => {
+			if (agentReply.kind !== "assistant") return;
 			const text = formatAgentReply(agentReply);
 			emit({ ...outgoing, reply: { type: "message" as const, text } });
 		});
