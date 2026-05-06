@@ -37,7 +37,7 @@
 	"dependencies": {
 		"@mariozechner/pi-agent-core": "latest",
 		"@mariozechner/pi-ai": "latest",
-		"@mariozechner/pi-coding-agent": "latest",
+		"@mariozechner/pi-coding-agent": "^0.73.0",
 		"better-sqlite3": "^12.6.2",
 		"dotenv": "^17.3.1",
 		"eta": "^4.5.1"

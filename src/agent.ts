@@ -465,7 +465,7 @@ export async function createAgentManager(config: AgentManagerConfig) {
 	 */
 	async function reload(chatGuid: string): Promise<void> {
 		modelRegistry.refresh();
-		const settings = SettingsManager.create();
+		const settings = SettingsManager.create(workingDir);
 		const provider = settings.getDefaultProvider();
 		const modelId = settings.getDefaultModel();
 		const newModel = provider && modelId ? modelRegistry.find(provider, modelId) : undefined;
